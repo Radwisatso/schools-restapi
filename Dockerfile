@@ -13,4 +13,4 @@ COPY . .
 RUN bunx prisma generate
 # RUN bunx prisma migrate dev 
 
-CMD ["bunx", "prisma", "migrate", "dev" , "&&", "bun", "start"]
+CMD ["bun", "start"]

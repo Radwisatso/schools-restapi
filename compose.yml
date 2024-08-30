@@ -8,6 +8,11 @@ services:
         required: true
     volumes:
       - bearmentor-schools:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgres -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   core:
     image: bearmentor-schools
@@ -17,7 +22,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - database
+      database:
+        condition: service_healthy
   
 volumes:
   bearmentor-schools:
