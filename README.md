@@ -8,4 +8,5 @@ To run:
 bun run dev
 ```
 
-open http://localhost:3000
+Local: http://localhost:3000
+Production: https://schools-restapi.onrender.com (wait until 50s more)
