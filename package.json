@@ -1,0 +1,17 @@
+{
+  "name": "bearmentor-school",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.0",
+    "hono": "^4.5.9"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.5.1",
+    "prisma": "^5.19.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}
