@@ -3,21 +3,26 @@ services:
     image: postgres
     ports:
       - "5433:5432"
-    env_file:
-      - path: .env
-        required: true
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgres -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - bearmentor-schools:/var/lib/postgresql/data
 
   core:
-    image: bearmentor-schools
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3001:3000"
     depends_on:
-      - database
-  
+      database:
+        condition: service_healthy
+
 volumes:
   bearmentor-schools:
