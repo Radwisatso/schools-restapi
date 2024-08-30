@@ -1,0 +1,23 @@
+services:
+  database:
+    image: postgres
+    ports:
+      - "5433:5432"
+    env_file:
+      - path: .env
+        required: true
+    volumes:
+      - bearmentor-schools:/var/lib/postgresql/data
+
+  core:
+    image: bearmentor-schools
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+  
+volumes:
+  bearmentor-schools:
